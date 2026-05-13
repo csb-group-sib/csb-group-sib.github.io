@@ -4,40 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIB Computational & Systems Biology Group - Bologna Meeting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-        nav { background: #f4f4f4; padding: 10px; margin-bottom: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: #2c3e50; }
-        .meeting-details { background: #f9f9f9; padding: 20px; border-radius: 5px; }
+        :root {
+            --sib-blue: #1a3a5c;
+            --sib-light-blue: #2c5f8a;
+            --sib-accent: #e8f0fe;
+            --sib-gray: #f5f7fa;
+            --sib-orange: #e67e22;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand { font-weight: bold; color: var(--sib-blue); font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--sib-blue); }
+        .nav-links a.active { color: var(--sib-blue); border-bottom: 2px solid var(--sib-blue); }
+        
+        /* Jumbotron */
+        .jumbotron {
+            background: linear-gradient(135deg, var(--sib-blue) 0%, var(--sib-light-blue) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .jumbotron::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover; opacity: 0.3;
+        }
+        .jumbotron-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .jumbotron h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+        .jumbotron .lead { font-size: 1.3rem; opacity: 0.95; margin-bottom: 2rem; }
+        .jumbotron .meeting-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            padding: 0.5rem 2rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* Sections */
+        .section { padding: 4rem 2rem; }
+        .section-title { text-align: center; color: var(--sib-blue); font-size: 2rem; margin-bottom: 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Card Grid */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+        .card-figure {
+            height: 200px;
+            background: var(--sib-accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: var(--sib-blue);
+        }
+        .card-body { padding: 1.5rem; }
+        .card-body h3 { color: var(--sib-blue); margin-bottom: 0.5rem; }
+        .card-body p { color: #666; }
+        
+        /* Figure styles */
+        .figure { margin: 2rem 0; text-align: center; }
+        .figure img { max-width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .figure-caption { margin-top: 0.5rem; color: #666; font-style: italic; }
+        
+        /* Footer */
+        .footer {
+            background: var(--sib-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        .footer a { color: white; text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            .jumbotron h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="schedule.html">Schedule</a>
-        <a href="organizers.html">Organizers</a>
-        <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <div class="nav-brand">🧬 SIB CompSysBio Group</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="organizers.html">Organizers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
-    
+
+    <!-- Jumbotron -->
+    <header class="jumbotron">
+        <div class="jumbotron-content">
+            <div class="meeting-badge">📅 July 16, 2026 | Bologna, Italy</div>
+            <h1>Computational & Systems Biology Group Meeting</h1>
+            <p class="lead">Bringing together researchers at the intersection of computational methods and biological systems</p>
+            <p style="opacity: 0.9;">Società Italiana di Biochimica e Biologia Molecolare</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>Computational & Systems Biology Group Meeting</h1>
-        <p>Italian Society of Biochemistry (SIB) - Computational and Systems Biology Group</p>
-        
-        <div class="meeting-details">
-            <h2>Meeting Details</h2>
-            <p><strong>Date:</strong> July 16, 2026</p>
-            <p><strong>Time:</strong> 10:00 AM - 5:00 PM</p>
-            <p><strong>Location:</strong> Bologna, Italy</p>
-            <p><strong>Research Focus:</strong> [Please add the group's research focus from the actual SIB page]</p>
-        </div>
-        
-        <div>
-            <h2>About the Group</h2>
-            <p>The Computational and Systems Biology Group of the Italian Society of Biochemistry brings together researchers working at the intersection of computational methods and biological systems.</p>
-            <p>[Please add more specific information from the actual SIB website when available]</p>
-        </div>
+        <section class="section">
+            <h2 class="section-title">About the Meeting</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-figure">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Research Focus</h3>
+                        <p>Exploring computational approaches to systems biology, integrating multi-omics data and network analysis.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-figure">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Community</h3>
+                        <p>Connect with fellow researchers, share methodologies, and foster collaborations across disciplines.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-figure">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Venue</h3>
+                        <p>Bologna, Italy — details on the specific venue will be announced soon.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--sib-gray);">
+            <h2 class="section-title">Meeting Highlights</h2>
+            <figure class="figure">
+                <div style="background: white; padding: 2rem; border-radius: 12px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap;">
+                    <div style="text-align: center; padding: 1rem;">
+                        <i class="fas fa-clock" style="font-size: 2.5rem; color: var(--sib-blue);"></i>
+                        <h3 style="margin-top: 0.5rem;">10:00 – 17:00</h3>
+                        <p>Full Day Program</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <i class="fas fa-coffee" style="font-size: 2.5rem; color: var(--sib-blue);"></i>
+                        <h3 style="margin-top: 0.5rem;">Coffee Breaks</h3>
+                        <p>11:00 & 15:00</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <i class="fas fa-utensils" style="font-size: 2.5rem; color: var(--sib-blue);"></i>
+                        <h3 style="margin-top: 0.5rem;">Lunch</h3>
+                        <p>13:00 – 14:00</p>
+                    </div>
+                </div>
+                <figcaption class="figure-caption">Preliminary schedule overview — see full program on the Schedule page</figcaption>
+            </figure>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Become Part of the World of SIB</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem auto;">
+                Join the Computational and Systems Biology Group to stay updated on events, conferences, 
+                and the latest research in computational biochemistry.
+            </p>
+            <div style="text-align: center;">
+                <a href="contact.html" style="display: inline-block; background: var(--sib-blue); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
+                    Get in Touch <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
     </div>
+
+    <footer class="footer">
+        <p>© 2026 SIB — Società Italiana di Biochimica e Biologia Molecolare</p>
+        <p><a href="https://sib-biochemistry.it" target="_blank">sib-biochemistry.it</a></p>
+    </footer>
 </body>
 </html>

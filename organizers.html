@@ -3,52 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meeting Organizers - SIB Computational & Systems Biology Group</title>
+    <title>Organizers - SIB Bologna Meeting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-        nav { background: #f4f4f4; padding: 10px; margin-bottom: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .organizer { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
-        .organizer h3 { color: #2c3e50; margin-top: 0; }
+        :root {
+            --sib-blue: #1a3a5c;
+            --sib-light-blue: #2c5f8a;
+            --sib-accent: #e8f0fe;
+            --sib-gray: #f5f7fa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
+        
+        .navbar {
+            background: white; padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand { font-weight: bold; color: var(--sib-blue); font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--sib-blue); }
+        .nav-links a.active { color: var(--sib-blue); border-bottom: 2px solid var(--sib-blue); }
+        
+        .jumbotron {
+            background: linear-gradient(135deg, var(--sib-blue) 0%, var(--sib-light-blue) 100%);
+            color: white; padding: 3rem 2rem; text-align: center;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+        
+        .org-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        
+        .org-card {
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center;
+            transition: transform 0.3s;
+        }
+        .org-card:hover { transform: translateY(-5px); }
+        .org-figure {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: var(--sib-accent); margin: 2rem auto 1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--sib-blue);
+        }
+        .org-body { padding: 0 1.5rem 1.5rem; }
+        .org-body h3 { color: var(--sib-blue); margin-bottom: 0.3rem; }
+        .org-role { color: var(--sib-light-blue); font-weight: 600; margin-bottom: 0.5rem; }
+        
+        .committee-section { margin: 2rem 0; }
+        .committee-section h3 { color: var(--sib-blue); border-bottom: 2px solid var(--sib-accent); padding-bottom: 0.5rem; }
+        .committee-list { list-style: none; margin-top: 1rem; }
+        .committee-list li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        
+        .footer { background: var(--sib-blue); color: white; text-align: center; padding: 2rem; margin-top: 4rem; }
+        
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="schedule.html">Schedule</a>
-        <a href="organizers.html">Organizers</a>
-        <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <div class="nav-brand">🧬 SIB CompSysBio Group</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="organizers.html" class="active">Organizers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
-    
+
+    <header class="jumbotron">
+        <h1>👥 Meeting Organizers</h1>
+        <p>Computational & Systems Biology Group — Italian Society of Biochemistry</p>
+    </header>
+
     <div class="container">
-        <h1>Meeting Organizers</h1>
-        <p>This meeting is organized by the Computational & Systems Biology Group of the Italian Society of Biochemistry.</p>
-        
-        <div class="organizer">
-            <h3>Scientific Committee</h3>
-            <ul>
-                <li><strong>[Name]</strong> - [Affiliation]</li>
-                <li><strong>[Name]</strong> - [Affiliation]</li>
-                <li><strong>[Name]</strong> - [Affiliation]</li>
+        <!-- Group Coordinator Figures -->
+        <h2 style="text-align: center; color: var(--sib-blue); margin: 2rem 0;">Group Coordinators</h2>
+        <div class="org-grid">
+            <div class="org-card">
+                <div class="org-figure">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="org-body">
+                    <h3>[Coordinator Name]</h3>
+                    <p class="org-role">Group Coordinator</p>
+                    <p>[Affiliation]</p>
+                    <p><small>[Research focus / brief bio]</small></p>
+                </div>
+            </div>
+            <div class="org-card">
+                <div class="org-figure">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="org-body">
+                    <h3>[Co-Coordinator Name]</h3>
+                    <p class="org-role">Group Co-Coordinator</p>
+                    <p>[Affiliation]</p>
+                    <p><small>[Research focus / brief bio]</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scientific Committee -->
+        <div class="committee-section">
+            <h3><i class="fas fa-flask"></i> Scientific Committee</h3>
+            <ul class="committee-list">
+                <li><strong>[Name]</strong> — [Affiliation] — [Expertise area]</li>
+                <li><strong>[Name]</strong> — [Affiliation] — [Expertise area]</li>
+                <li><strong>[Name]</strong> — [Affiliation] — [Expertise area]</li>
             </ul>
         </div>
-        
-        <div class="organizer">
-            <h3>Local Organizing Committee</h3>
-            <ul>
-                <li><strong>[Name]</strong> - [Affiliation/Role]</li>
-                <li><strong>[Name]</strong> - [Affiliation/Role]</li>
-                <li><strong>[Name]</strong> - [Affiliation/Role]</li>
+
+        <!-- Local Organizing Committee -->
+        <div class="committee-section">
+            <h3><i class="fas fa-map-pin"></i> Local Organizing Committee (Bologna)</h3>
+            <ul class="committee-list">
+                <li><strong>[Name]</strong> — [Affiliation] — <em>Local Chair</em></li>
+                <li><strong>[Name]</strong> — [Affiliation]</li>
+                <li><strong>[Name]</strong> — [Affiliation]</li>
             </ul>
         </div>
-        
-        <div class="organizer">
-            <h3>Group Coordinators</h3>
-            <p>[Please add the SIB group coordinators' names and affiliations from the actual website]</p>
-        </div>
-        
-        <p><strong>Please update with actual organizer names, affiliations, and contact information.</strong></p>
+
+        <figure style="text-align: center; margin: 3rem 0;">
+            <div style="background: var(--sib-accent); padding: 2rem; border-radius: 12px;">
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--sib-blue);"></i>
+                <p style="margin-top: 1rem; font-weight: 600;">The Computational & Systems Biology Group</p>
+                <p style="font-size: 0.9rem;">Part of SIB's network of scientific groups fostering interdisciplinary research</p>
+            </div>
+            <figcaption style="margin-top: 0.5rem; color: #666; font-style: italic;">
+                <a href="https://sib-biochemistry.it/about-us/sib-group/computational-and-system-biology/" target="_blank" style="color: var(--sib-blue);">
+                    Visit official SIB group page <i class="fas fa-external-link-alt"></i>
+                </a>
+            </figcaption>
+        </figure>
+
+        <p style="text-align: center;"><em>Organizer list will be updated as confirmations are received.</em></p>
     </div>
+
+    <footer class="footer">
+        <p>© 2026 SIB — Società Italiana di Biochimica e Biologia Molecolare</p>
+    </footer>
 </body>
 </html>
