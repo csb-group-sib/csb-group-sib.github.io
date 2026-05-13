@@ -202,23 +202,22 @@
             </div>
 
             <h2 class="section-title">Send a Message</h2>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <input type="hidden" name="_subject" value="New SIB CSB Group Inquiry">
+            <form id="contact-form" onsubmit="submitToGoogleForm(event)">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="entry.271071808" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="entry.1302340887" required>
                 </div>
                 <div class="form-group">
                     <label for="affiliation">Affiliation</label>
-                    <input type="text" id="affiliation" name="affiliation">
+                    <input type="text" id="affiliation" name="entry.1366751755">
                 </div>
                 <div class="form-group">
                     <label for="subject">Subject</label>
-                    <select id="subject" name="subject">
+                    <select id="subject" name="entry.197107002">
                         <option value="">Select a topic...</option>
                         <option value="Meeting Registration">Meeting Registration</option>
                         <option value="Program Inquiry">Program/Schedule Inquiry</option>
@@ -229,9 +228,10 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Message *</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <textarea id="message" name="entry.1926112965" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+                <p id="form-status" style="text-align: center; margin-top: 1rem; display: none;"></p>
             </form>
         </section>
 
@@ -240,5 +240,42 @@
             <p><a href="https://sib-biochemistry.it" target="_blank">sib-biochemistry.it</a></p>
         </footer>
     </div>
+
+    <script>
+    function submitToGoogleForm(event) {
+        event.preventDefault();
+        
+        const form = document.getElementById('contact-form');
+        const formData = new FormData(form);
+        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdFG7naW1o77vCiTQ96_HFpkfdGwxtfr5MK8yWFnZaKsxpVOA/formResponse';
+        
+        const params = new URLSearchParams();
+        for (const [key, value] of formData.entries()) {
+            params.append(key, value);
+        }
+        
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: params.toString(),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        })
+        .then(() => {
+            document.getElementById('form-status').style.display = 'block';
+            document.getElementById('form-status').style.color = 'var(--sib-green)';
+            document.getElementById('form-status').innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully! We\'ll get back to you soon.';
+            form.reset();
+        })
+        .catch(() => {
+            document.getElementById('form-status').style.display = 'block';
+            document.getElementById('form-status').style.color = 'red';
+            document.getElementById('form-status').innerHTML = '<i class="fas fa-exclamation-circle"></i> Error sending message. Please email us directly at emidio.capriotti@unibo.it';
+        });
+        
+        return false;
+    }
+    </script>
 </body>
 </html>
