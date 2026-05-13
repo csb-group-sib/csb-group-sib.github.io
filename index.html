@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --sib-green: #52b788;
-            --sib-light-green: #74c69d;
+            --sib-green: #2d6a4f;
+            --sib-light-green: #52b788;
             --sib-accent: #d8f3dc;
             --sib-gray: #f5f7fa;
-            --sib-dark: #2d6a4f;
+            --sib-dark: #1b4332;
             --sib-lighter-green: #b7e4c7;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,13 +22,12 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: var(--sib-green);
-            background-image: linear-gradient(135deg, var(--sib-green) 0%, var(--sib-light-green) 50%, var(--sib-green) 100%);
+            background-color: var(--sib-light-green);
+            background-image: linear-gradient(135deg, var(--sib-light-green) 0%, #74c69d 50%, var(--sib-light-green) 100%);
             min-height: 100vh;
             padding: 30px 15px;
         }
         
-        /* Main container with rounded corners */
         .main-container {
             max-width: 1000px;
             margin: 0 auto 30px auto;
@@ -39,7 +38,6 @@
             overflow: hidden;
         }
         
-        /* Navigation */
         .navbar {
             background: white;
             padding: 1.2rem 2rem;
@@ -67,31 +65,45 @@
         .nav-links a:hover { color: var(--sib-green); }
         .nav-links a.active { color: var(--sib-green); border-bottom: 2px solid var(--sib-green); }
         
-        /* Header */
+        /* Header / Banner with dark green */
         .page-header {
-            background: linear-gradient(135deg, var(--sib-accent) 0%, white 100%);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--sib-lighter-green);
+            background: linear-gradient(135deg, var(--sib-dark) 0%, var(--sib-green) 100%);
+            padding: 2.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .page-header .header-text {
+            flex: 1;
+            color: white;
         }
         .page-header h1 {
-            color: var(--sib-dark);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
         }
         .page-header .subtitle {
-            color: var(--sib-green);
-            font-size: 1.2rem;
-            font-weight: 500;
+            font-size: 1.15rem;
+            opacity: 0.9;
+            font-weight: 400;
         }
-        .meeting-badge {
-            display: inline-block;
-            background: var(--sib-green);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+        
+        /* Square logo on the right */
+        .header-logo {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .header-logo i {
+            font-size: 3rem;
+            color: var(--sib-green);
         }
         
         /* Content sections */
@@ -117,7 +129,6 @@
             margin: 1rem 0;
         }
         
-        /* Buttons */
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
@@ -179,7 +190,6 @@
             margin: 1rem 0;
         }
         
-        /* Footer */
         .site-footer {
             background: var(--sib-dark);
             color: white;
@@ -194,7 +204,10 @@
             .main-container { border-radius: 12px; }
             .navbar { flex-direction: column; gap: 1rem; text-align: center; }
             .nav-links { justify-content: center; }
-            .page-header h1 { font-size: 1.8rem; }
+            .page-header { flex-direction: column; text-align: center; padding: 2rem 1rem; }
+            .page-header h1 { font-size: 1.6rem; }
+            .header-logo { width: 80px; height: 80px; }
+            .header-logo i { font-size: 2.5rem; }
             .content-section { padding: 1.5rem 1rem; }
         }
     </style>
@@ -212,12 +225,15 @@
             </ul>
         </nav>
 
-        <!-- Header -->
+        <!-- Header Banner with dark green background and square logo -->
         <header class="page-header">
-            <div class="meeting-badge">📅 July 16, 2026 | Bologna, Italy</div>
-            <h1>Computational & Systems Biology Group</h1>
-            <p class="subtitle">Società Italiana di Biochimica e Biologia Molecolare (SIB)</p>
-            <p style="margin-top: 0.5rem; color: #666;">Characterizing molecular interactions and biological networks to understand the complexity of living systems</p>
+            <div class="header-text">
+                <h1>Computational & Systems Biology Group</h1>
+                <p class="subtitle">Società Italiana di Biochimica e Biologia Molecolare (SIB)</p>
+            </div>
+            <div class="header-logo">
+                <i class="fas fa-dna"></i>
+            </div>
         </header>
 
         <!-- Declaratory Statement -->
