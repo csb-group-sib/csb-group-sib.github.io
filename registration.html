@@ -335,29 +335,28 @@
                 <p class="form-section-label">
                     <i class="fas fa-user"></i> Personal Details
                 </p>
-
                 <!-- First Name -->
                 <div class="form-group">
-                    <label for="entry_2008567381">First Name *</label>
-                    <input type="text" id="entry_2008567381" name="entry.2008567381" placeholder="Your first name" required>
+                    <label for="entry_1215543460">First Name *</label>
+                    <input type="text" id="entry_1215543460" name="entry.1215543460" placeholder="Your first name" required>
                 </div>
 
                 <!-- Last Name -->
                 <div class="form-group">
-                    <label for="entry_1190671788">Last Name *</label>
-                    <input type="text" id="entry_1190671788" name="entry.1190671788" placeholder="Your last name" required>
+                    <label for="entry_1992877352">Last Name *</label>
+                    <input type="text" id="entry_1992877352" name="entry.1992877352" placeholder="Your last name" required>
                 </div>
 
                 <!-- Affiliation -->
                 <div class="form-group">
-                    <label for="entry_983642081">Affiliation *</label>
-                    <input type="text" id="entry_983642081" name="entry.983642081" placeholder="Your university, institute, or organization" required>
+                    <label for="entry_1472041186">Affiliation *</label>
+                    <input type="text" id="entry_1472041186" name="entry.1472041186" placeholder="Your university, institute, or organization" required>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group">
-                    <label for="entry_1794298218">Email *</label>
-                    <input type="email" id="entry_1794298218" name="entry.1794298218" placeholder="your.email@example.com" required>
+                    <label for="entry_251722555">Email *</label>
+                    <input type="email" id="entry_251722555" name="entry.251722555" placeholder="your.email@example.com" required>
                 </div>
 
                 <hr class="form-divider">
@@ -369,26 +368,26 @@
 
                 <!-- Abstract Title -->
                 <div class="form-group">
-                    <label for="entry_1553638080">Abstract Title</label>
-                    <input type="text" id="entry_1553638080" name="entry.1553638080" placeholder="Title of your abstract">
+                    <label for="entry_1148124724">Abstract Title</label>
+                    <input type="text" id="entry_1148124724" name="entry.1148124724" placeholder="Title of your abstract">
                 </div>
 
                 <!-- Authors -->
                 <div class="form-group">
-                    <label for="entry_163240803">Authors</label>
-                    <input type="text" id="entry_163240803" name="entry.163240803" placeholder="e.g., A. Name, B. Name, C. Name">
+                    <label for="entry_1730546533">Authors</label>
+                    <input type="text" id="entry_1730546533" name="entry.1730546533" placeholder="e.g., A. Name, B. Name, C. Name">
                 </div>
 
                 <!-- Affiliations (abstract) -->
                 <div class="form-group">
-                    <label for="entry_1244423648">Affiliations</label>
-                    <input type="text" id="entry_1244423648" name="entry.1244423648" placeholder="Author affiliations">
+                    <label for="entry_788130122">Affiliations</label>
+                    <input type="text" id="entry_788130122" name="entry.788130122" placeholder="Author affiliations">
                 </div>
 
                 <!-- Abstract Text -->
                 <div class="form-group">
-                    <label for="entry_1734538314">Abstract Text (max 400 words)</label>
-                    <textarea id="entry_1734538314" name="entry.1734538314" placeholder="Paste your abstract text here…" rows="6"></textarea>
+                    <label for="entry_1206635814">Abstract Text (max 400 words)</label>
+                    <textarea id="entry_1206635814" name="entry.1206635814" placeholder="Paste your abstract text here…" rows="6"></textarea>
                 </div>
 
                 <!-- ===== TRAVEL FELLOWSHIP  ===== -->
@@ -396,10 +395,10 @@
                     <label>Travel Fellowship for Junior SIB Members </label>
                     <div class="radio-group">
                         <label>
-                            <input type="radio" name="entry.219597829" value="Yes" required> Yes
+                            <input type="radio" name="entry.785548573" value="Yes" required> Yes
                         </label>
                         <label>
-                            <input type="radio" name="entry.219597829" value="No"> No
+                            <input type="radio" name="entry.785548573" value="No"> No
                         </label>
                     </div>
                 </div>
@@ -422,22 +421,21 @@
         
         const form = document.getElementById('registration-form');
         const formData = new FormData(form);
-        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfh4284_jRlldlU0zSw7fGDvQ8Jve3kYXyx0n8U3phHp22WAQ/formResponse';
-        
+        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfh4284_jRlldlU0zSw7fGDvQ8Jve3kYXyx0n8U3phHp22WAQ/formResponse'       
+ 
         // Build URLSearchParams with all known entry IDs
         const params = new URLSearchParams();
         const knownEntries = [
-            'entry.2008567381',  // First Name
-            'entry.1190671788',  // Last Name
-            'entry.983642081',   // Affiliation
-            'entry.1794298218',  // Email
-            'entry.1553638080',  // Abstract Title
-            'entry.163240803',   // Authors
-            'entry.1244423648',  // Affiliations (abstract)
-            'entry.1734538314',  // Abstract Text
-            'entry.219597829'    // Travel Fellowship
+            'entry.1215543460',  // First Name
+            'entry.1992877352',  // Last Name
+            'entry.1472041186',   // Affiliation
+            'entry.251722555',  // Email
+            'entry.1148124724',  // Abstract Title
+            'entry.1730546533',   // Authors
+            'entry.788130122',  // Affiliations (abstract)
+            'entry.1206635814',  // Abstract Text
+            'entry.785548573'    // Travel Fellowship
         ];
-        
         for (const [key, value] of formData.entries()) {
             if (knownEntries.includes(key) && value) {
                 params.append(key, value);
