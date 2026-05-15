@@ -167,7 +167,80 @@
             margin-top: 2rem;
             text-align: center;
         }
-        
+ 
+        /* ===== FORM STYLES ===== */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.3rem; font-weight: 600; color: #555; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit; font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--sib-green); outline: none; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-section-label {
+            font-weight: 700;
+            color: var(--sib-dark);
+            font-size: 1.1rem;
+            margin: 1.8rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-section-label i { color: var(--sib-green); }
+
+        .optional-badge {
+            background: var(--sib-accent);
+            color: var(--sib-dark);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.3rem;
+            vertical-align: middle;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.4rem;
+        }
+        .radio-group label {
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            width: auto;
+            accent-color: var(--sib-green);
+        }
+
+        .form-divider {
+            border: none;
+            border-top: 2px dashed var(--sib-accent);
+            margin: 2rem 0;
+        }
+
+        .btn-submit {
+            background: var(--sib-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover { background: var(--sib-dark); }
+
+ 
         .site-footer {
             background: var(--sib-dark);
             color: white;
@@ -207,7 +280,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="schedule.html" >Schedule</a></li>
-                <li><a href="schedule.html" class="active">Registration</a></li>
+                <li><a href="registration.html" class="active">Registration</a></li>
                 <li><a href="organizers.html">Organizers</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -215,23 +288,13 @@
 
         <header class="page-header">
             <div class="header-text">
-                <h1> Registration</h1>
-                <p style="opacity: 0.9;">Deadline • June 3, 2026</p>
+                <h1> Registration and Abstracts</h1>
+                <p style="opacity: 0.9;">Submission Deadline • June 3, 2026</p>
             </div>
             <div class="header-logo">
                 <img src="https://csb-group-sib.github.io/csb-sib.png" alt="CSB Group Logo">
             </div>
         </header>
-
-        <section class="content-section">
-            <div style="text-align: center;">
-                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Become a SIB Member<i class="fas fa-external-link-alt"></i></a>
-            </div>
-        </section>
-
-        <section class="content-section" style="text-align: center; padding: 1.5rem 2rem; background: #fdf2f2; border-bottom: 1px solid #eee;">
-            <p style="color: #c0392b; font-weight: 700; font-size: 1.1rem;"><i class="fas fa-clock"></i> Registration & Abstract Submission Deadline: <strong>June 3, 2026</strong></p>
-        </section>
 
         <section class="content-section">
             <h2 class="section-title">Registration Fees</h2>
@@ -257,6 +320,17 @@
                 <a href="https://sib-biochemistry.it/membership/" target="_blank" style="color: var(--sib-dark); font-weight: 600;">Learn about SIB Membership <i class="fas fa-external-link-alt"></i></a>
             </div>
         </section>
+
+        <section class="content-section">
+            <div style="text-align: center;">
+                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Become a SIB Member<i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </section>
+
+        <section class="content-section" style="text-align: center; padding: 1.5rem 2rem; background: #fdf2f2; border-bottom: 1px solid #eee;">
+            <p style="color: #c0392b; font-weight: 700; font-size: 1.1rem;"><i class="fas fa-clock"></i> Registration & Abstract Submission Deadline: <strong>June 3, 2026</strong></p>
+        </section>
+
 
             <h2 class="section-title">Registration Form</h2>
 
