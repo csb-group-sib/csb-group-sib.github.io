@@ -417,53 +417,50 @@
 
     <script>
     function submitToGoogleForm(event) {
-        event.preventDefault();
-        
-        const form = document.getElementById('registration-form');
-        const formData = new FormData(form);
-        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdl9dLIcaOe6WP7YICAF7IOSyBVwfFig3k0UoNvon7v63HhDw/formResponse';
- 
-        // Build URLSearchParams with all known entry IDs
-        const params = new URLSearchParams();
-        const knownEntries = [
-            'entry.1215543460',  // First Name
-            'entry.1992877352',  // Last Name
-            'entry.1472041186',   // Affiliation
-            'entry.251722555',  // Email
-            'entry.1148124724',  // Abstract Title
-            'entry.1730546533',   // Authors
-            'entry.788130122',  // Affiliations (abstract)
-            'entry.1206635814',  // Abstract Text
-            'entry.785548573'    // Travel Fellowship
-        ];
-        for (const [key, value] of formData.entries()) {
-            if (knownEntries.includes(key) && value) {
-                params.append(key, value);
-            }
+    event.preventDefault();
+    
+    const form = document.getElementById('registration-form');
+    const formData = new FormData(form);
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdl9dLIcaOe6WP7YICAF7IOSyBVwfFig3k0UoNvon7v63HhDw/formResponse';
+    
+    const params = new URLSearchParams();
+    const knownEntries = [
+        'entry.1215543460',
+        'entry.1992877352',
+        'entry.1472041186',
+        'entry.251722555',
+        'entry.1148124724',
+        'entry.1730546533',
+        'entry.788130122',
+        'entry.1206635814',
+        'entry.785548573'
+    ];
+    
+    for (const [key, value] of formData.entries()) {
+        if (knownEntries.includes(key) && value) {
+            params.append(key, value);
         }
-        
+    }
+    
+    // Use sendBeacon — more reliable for cross-origin form submission
+    if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, params);
+    } else {
         fetch(url, {
             method: 'POST',
             mode: 'no-cors',
             body: params.toString(),
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            }
-        })
-        .then(() => {
-            document.getElementById('form-status').style.display = 'block';
-            document.getElementById('form-status').style.color = 'var(--sib-green)';
-            document.getElementById('form-status').innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully!';
-            form.reset();
-        })
-        .catch(() => {
-            document.getElementById('form-status').style.display = 'block';
-            document.getElementById('form-status').style.color = 'red';
-            document.getElementById('form-status').innerHTML = '<i class="fas fa-exclamation-circle"></i> Error submitting registration. Please email us directly at emidio.capriotti@unibo.it';
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
-        
-        return false;
     }
+    
+    document.getElementById('form-status').style.display = 'block';
+    document.getElementById('form-status').style.color = 'var(--sib-green)';
+    document.getElementById('form-status').innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully!';
+    form.reset();
+    
+    return false;
+}
     </script>
 
 </body>
