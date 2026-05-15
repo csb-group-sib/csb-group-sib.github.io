@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule & Registration - SIB CompSysBio Meeting</title>
+    <link rel="icon" type="image/x-icon" href="https://csb-group-sib.github.io/csb-sib.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://csb-group-sib.github.io/csb-sib.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --sib-green: #2d6a4f;
+            --sib-light-green: #52b788;
+            --sib-accent: #d8f3dc;
+            --sib-gray: #f5f7fa;
+            --sib-dark: #1b4332;
+            --sib-lighter-green: #b7e4c7;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #e8f5e9;
+            background-image: linear-gradient(135deg, #e8f5e9 0%, #f1f8f2 50%, #e8f5e9 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+        
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+         .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            border-bottom: 3px solid var(--sib-accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .nav-brand {
+            font-weight: 700;
+            color: var(--sib-dark);
+            font-size: 1.1rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-brand img { height: 1.4em; vertical-align: middle; margin-right: 0.4rem; }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+ 
+        .page-header {
+            background: linear-gradient(135deg, var(--sib-dark) 0%, var(--sib-green) 100%);
+            padding: 2.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .page-header .header-text { flex: 1; color: white; }
+        .page-header h1 { font-size: 2.2rem; }
+        
+        .header-logo {
+            width: 100px; height: 100px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .header-logo img { width: 100%; height: auto; }
+        
+        .content-section { padding: 2.5rem 2rem; }
+        .content-section + .content-section { border-top: 1px solid #eee; }
+        .section-title {
+            color: var(--sib-dark);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--sib-accent);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+        .btn-primary { background: var(--sib-green); color: white; }
+        .btn-primary:hover { background: var(--sib-dark); transform: translateY(-2px); }
+        .btn-dark { background: var(--sib-dark); color: white; }
+        .btn-dark:hover { background: #1b4332; transform: translateY(-2px); }
+        
+        .location-box {
+            background: var(--sib-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        .fees-table th {
+            background: var(--sib-green);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        .fees-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .fees-table tr:hover td { background: var(--sib-accent); }
+        .fee-amount { font-weight: 700; color: var(--sib-dark); text-align: right; }
+        
+        .grants-box {
+            background: #fff8e1;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .grants-box h3 { color: #e67e22; }
+        
+        .schedule-note {
+            background: var(--sib-accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .site-footer {
+            background: var(--sib-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        .site-footer a { color: var(--sib-lighter-green); text-decoration: underline; }
+        
+         @media (max-width: 768px) {
+            body { padding: 10px; }
+            .main-container { border-radius: 12px; }
+            .navbar {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+                padding: 1rem;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 0.8rem;
+                flex-wrap: wrap;
+            }
+            .nav-links a { font-size: 0.9rem; }
+            .page-header { flex-direction: column; text-align: center; padding: 2rem 1rem; }
+            .page-header h1 { font-size: 1.6rem; }
+            .header-logo { width: 80px; height: 80px; }
+            .content-section { padding: 1.5rem 1rem; }
+        }    
+    
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar">
+            <a href="index.html" class="nav-brand"><img src="https://csb-group-sib.github.io/csb-sib.png" alt="CSB Group - SIB Logo"> CSB Group - SIB</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="schedule.html" >Schedule</a></li>
+                <li><a href="schedule.html" class="active">Registration</a></li>
+                <li><a href="organizers.html">Organizers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <header class="page-header">
+            <div class="header-text">
+                <h1> Registration</h1>
+                <p style="opacity: 0.9;">Deadline • June 3, 2026</p>
+            </div>
+            <div class="header-logo">
+                <img src="https://csb-group-sib.github.io/csb-sib.png" alt="CSB Group Logo">
+            </div>
+        </header>
+
+        <section class="content-section">
+            <div style="text-align: center;">
+                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Become a SIB Member<i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </section>
+
+        <section class="content-section" style="text-align: center; padding: 1.5rem 2rem; background: #fdf2f2; border-bottom: 1px solid #eee;">
+            <p style="color: #c0392b; font-weight: 700; font-size: 1.1rem;"><i class="fas fa-clock"></i> Registration & Abstract Submission Deadline: <strong>June 3, 2026</strong></p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Registration Fees</h2>
+            <table class="fees-table">
+                <thead>
+                    <tr><th>Category</th><th>Fee</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Junior Researchers <strong>with</strong> SIB membership</td><td class="fee-amount">€ 100</td></tr>
+                    <tr><td>Junior Researchers <strong>without</strong> SIB membership</td><td class="fee-amount">€ 150</td></tr>
+                    <tr><td>Senior Researchers <strong>with</strong> SIB membership</td><td class="fee-amount">€ 140</td></tr>
+                    <tr><td>Senior Researchers <strong>without</strong> SIB membership</td><td class="fee-amount">€ 220</td></tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; font-size: 0.9rem; color: #666;"><em>Fees include access to all sessions, coffee breaks, and lunch.</em></p>
+        </section>
+
+        <section class="content-section">
+            <div class="grants-box">
+                <h3><i class="fas fa-ticket-alt"></i> Travel Grants Available!</h3>
+                <p style="font-size: 1.05rem; margin-top: 0.5rem;">Travel grants are available for <strong>Junior SIB Members</strong>.</p>
+                <p>For eligibility and application details, please contact us.</p>
+                <a href="https://sib-biochemistry.it/membership/" target="_blank" style="color: var(--sib-dark); font-weight: 600;">Learn about SIB Membership <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </section>
+
+
+        <footer class="site-footer">
+            <p>Computational and Systems Biology Group — Società Italiana di Biochimica e Biologia Molecolare</p>
+            <p><a href="https://sib-biochemistry.it" target="_blank">sib-biochemistry.it</a></p>
+        </footer>
+    </div>
+</body>
+</html>
