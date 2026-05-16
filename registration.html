@@ -120,14 +120,6 @@
         .btn-dark { background: var(--sib-dark); color: white; }
         .btn-dark:hover { background: #1b4332; transform: translateY(-2px); }
         
-        .location-box {
-            background: var(--sib-gray);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        
         .fees-table {
             width: 100%;
             border-collapse: collapse;
@@ -160,13 +152,16 @@
         }
         .grants-box h3 { color: #e67e22; }
         
-        .schedule-note {
-            background: var(--sib-accent);
-            padding: 1.5rem;
+        .payment-reminder {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
             border-radius: 8px;
-            margin-top: 2rem;
+            padding: 1.2rem;
+            margin-top: 1rem;
             text-align: center;
+            display: none;
         }
+        .payment-reminder.show { display: block; }
  
         /* ===== FORM STYLES ===== */
         .form-group { margin-bottom: 1.2rem; }
@@ -240,7 +235,6 @@
         }
         .btn-submit:hover { background: var(--sib-dark); }
 
- 
         .site-footer {
             background: var(--sib-dark);
             color: white;
@@ -311,16 +305,12 @@
             </table>
             <p style="text-align: center; font-size: 0.9rem; color: #666;"><em>Fees include access to all sessions, coffee breaks, and lunch.</em></p>
 
-            <div style="text-align: center;">
-                <p style="text-align: center; color: #c0392b; font-eight: 700; font-size: 1.1rem;"><i class="fas fa-clock"></i> Registration & Abstract Submission Deadline: <strong>June 3, 2026</strong></p>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Fee Payment<i class="fas fa-external-link-alt"></i></a>
-            </div>
+            <p style="text-align: center; color: #c0392b; font-weight: 700; font-size: 1.1rem;"><i class="fas fa-clock"></i> Registration & Abstract Submission Deadline: <strong>June 3, 2026</strong></p>
 
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="https://csb-sib.favmeeting.it/registration/" target="_blank" class="btn btn-primary">Complete Payment <i class="fas fa-credit-card"></i></a>
+            </div>
         </section>
-        
-
 
         <section class="content-section">
             <div class="grants-box">
@@ -330,7 +320,7 @@
                 <a href="https://sib-biochemistry.it/membership/" target="_blank" style="color: var(--sib-dark); font-weight: 600;">Learn about SIB Membership <i class="fas fa-external-link-alt"></i></a>
             </div>
             <div style="text-align: center;">
-                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Become a SIB Member<i class="fas fa-external-link-alt"></i></a>
+                <a href="https://sib-biochemistry.it/membership/" target="_blank" class="btn btn-dark">Become a SIB Member <i class="fas fa-external-link-alt"></i></a>
             </div>
         </section>
 
@@ -413,6 +403,17 @@
 
                 <button type="submit" class="btn-submit">Submit Registration <i class="fas fa-paper-plane"></i></button>
                 <p id="form-status" style="text-align: center; margin-top: 1rem; display: none;"></p>
+                
+                <!-- Payment Reminder (appears after submission) -->
+                <div class="payment-reminder" id="paymentReminder">
+                    <p style="font-size: 1.1rem; font-weight: 700; color: #856404; margin-bottom: 0.8rem;">
+                        ⚠️ Don't forget to complete your payment!
+                    </p>
+                    <p style="margin-bottom: 1rem;">Your registration is not complete until the fee is paid.</p>
+                    <a href="https://csb-sib.favmeeting.it/registration/" target="_blank" class="btn btn-primary" style="margin: 0;">
+                        Pay Registration Fee <i class="fas fa-credit-card"></i>
+                    </a>
+                </div>
             </form>
         </section>
 
@@ -425,50 +426,55 @@
 
     <script>
     function submitToGoogleForm(event) {
-    event.preventDefault();
-    
-    const form = document.getElementById('registration-form');
-    const formData = new FormData(form);
-    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdl9dLIcaOe6WP7YICAF7IOSyBVwfFig3k0UoNvon7v63HhDw/formResponse';
-    
-    const params = new URLSearchParams();
-    const knownEntries = [
-        'entry.1215543460',
-        'entry.1992877352',
-        'entry.1472041186',
-        'entry.251722555',
-        'entry.1148124724',
-        'entry.1730546533',
-        'entry.788130122',
-        'entry.1206635814',
-        'entry.785548573'
-    ];
-    
-    for (const [key, value] of formData.entries()) {
-        if (knownEntries.includes(key) && value) {
-            params.append(key, value);
+        event.preventDefault();
+        
+        const form = document.getElementById('registration-form');
+        const formData = new FormData(form);
+        const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdl9dLIcaOe6WP7YICAF7IOSyBVwfFig3k0UoNvon7v63HhDw/formResponse';
+        
+        const params = new URLSearchParams();
+        const knownEntries = [
+            'entry.1215543460',
+            'entry.1992877352',
+            'entry.1472041186',
+            'entry.251722555',
+            'entry.1148124724',
+            'entry.1730546533',
+            'entry.788130122',
+            'entry.1206635814',
+            'entry.785548573'
+        ];
+        
+        for (const [key, value] of formData.entries()) {
+            if (knownEntries.includes(key) && value) {
+                params.append(key, value);
+            }
         }
+        
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon(url, params);
+        } else {
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: params.toString(),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+        
+        // Show success message
+        document.getElementById('form-status').style.display = 'block';
+        document.getElementById('form-status').style.color = 'var(--sib-green)';
+        document.getElementById('form-status').innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully!';
+        
+        // Show payment reminder
+        document.getElementById('paymentReminder').classList.add('show');
+        document.getElementById('paymentReminder').scrollIntoView({ behavior: 'smooth' });
+        
+        form.reset();
+        
+        return false;
     }
-    
-    // Use sendBeacon — more reliable for cross-origin form submission
-    if (navigator.sendBeacon) {
-        navigator.sendBeacon(url, params);
-    } else {
-        fetch(url, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: params.toString(),
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        });
-    }
-    
-    document.getElementById('form-status').style.display = 'block';
-    document.getElementById('form-status').style.color = 'var(--sib-green)';
-    document.getElementById('form-status').innerHTML = '<i class="fas fa-check-circle"></i> Registration submitted successfully!';
-    form.reset();
-    
-    return false;
-}
     </script>
 
 </body>
