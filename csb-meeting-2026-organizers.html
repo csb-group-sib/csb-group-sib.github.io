@@ -137,7 +137,58 @@
         }
         .board-member i { font-size: 2.5rem; color: var(--sib-green); }
         .board-member h4 { color: var(--sib-dark); margin: 0.5rem 0 0.25rem; }
-        
+
+        /* === ADDED: Acknowledgments grid === */
+        .acknowledgments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .ack-box {
+            background: white;
+            border: 2px solid var(--sib-accent);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: box-shadow 0.3s;
+            min-height: 130px;
+        }
+        .ack-box:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .ack-box .logo-placeholder {
+            width: 70px;
+            height: 70px;
+            background: var(--sib-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sib-green);
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .ack-box .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .ack-box p {
+            font-size: 0.8rem;
+            color: #555;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        /* ===================================== */
+
+ 
         .site-footer {
             background: var(--sib-dark);
             color: white;
@@ -284,6 +335,47 @@
         </section>
 
         </section>
+
+        <!-- ===== ADDED: Acknowledgments section ===== -->
+        <section class="content-section">
+            <h2 class="section-title">Acknowledgments</h2>
+            <p style="text-align:center; color:#555; margin-bottom:1.5rem;">We gratefully acknowledge the support of:</p>
+            
+            <div class="acknowledgments-grid">
+                <!-- SIB -->
+                <div class="ack-box">
+                    <div class="logo-placeholder">
+                        <img src="https://csb-group-sib.github.io/logos/sib-logo.png" alt="SIB Logo">
+                    </div>
+                    <p>Società Italiana di Biochimica e Biologia Molecolare</p>
+                </div>
+                
+                <!-- ELIXIR Italy -->
+                <div class="ack-box">
+                    <div class="logo-placeholder">
+                        <img src="https://csb-group-sib.github.io/logos/elixir-italy-logo.png" alt="ELIXIR Italy Logo">
+                    </div>
+                    <p>ELIXIR Italy</p>
+                </div>
+                
+                <!-- Fondazione Alessandro Volta -->
+                <div class="ack-box">
+                    <div class="logo-placeholder">
+                        <img src="https://csb-group-sib.github.io/logos/fondazione-volta-logo.png" alt="Fondazione Alessandro Volta Logo">
+                    </div>
+                    <p>Fondazione Alessandro Volta</p>
+                </div>
+                
+                <!-- Accademia delle Scienze -->
+                <div class="ack-box">
+                    <div class="logo-placeholder">
+                        <img src="https://csb-group-sib.github.io/logos/accademia-scienze-bologna-logo.png" alt="Accademia delle Scienze Logo">
+                    </div>
+                    <p>Accademia delle Scienze dell'Istituto di Bologna</p>
+                </div>
+            </div>
+        </section>
+        <!-- =========================================== -->
 
         <footer class="site-footer">
             <p>Computational and Systems Biology Group — Società Italiana di Biochimica e Biologia Molecolare</p>
