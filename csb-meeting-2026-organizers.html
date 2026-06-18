@@ -139,6 +139,7 @@
         .board-member h4 { color: var(--sib-dark); margin: 0.5rem 0 0.25rem; }
 
         /* === ADDED: Acknowledgments grid === */
+
         .acknowledgments-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -149,6 +150,10 @@
             padding: 1.5rem 1rem;
             background: var(--sib-accent);
             border-radius: 8px;
+            display: flex;                    /* ← ADDED */
+            flex-direction: column;           /* ← ADDED */
+            align-items: center;              /* ← ADDED */
+            gap: 0.8rem;                      /* ← ADDED */
         }
         .ack-box:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -156,7 +161,7 @@
         .ack-box .logo-placeholder {
             width: 70px;
             height: 70px;
-            background: var(--sib-gray);
+            background: transparent;          /* ← CHANGED from var(--sib-gray) */
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -174,9 +179,10 @@
         .ack-box p {
             font-size: 0.8rem;
             color: #555;
-            font-weight: 500;
+            font-weight: 700;                 /* ← CHANGED from 500 */
             line-height: 1.3;
         }
+
         /* ===================================== */
 
  
