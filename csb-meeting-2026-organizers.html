@@ -141,23 +141,14 @@
         /* === ADDED: Acknowledgments grid === */
         .acknowledgments-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
         }
         .ack-box {
-            background: white;
-            border: 2px solid var(--sib-accent);
-            border-radius: 12px;
-            padding: 1.5rem 1rem;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            transition: box-shadow 0.3s;
-            min-height: 130px;
+            padding: 1.5rem 1rem;
+            background: var(--sib-accent);
+            border-radius: 8px;
         }
         .ack-box:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -342,7 +333,7 @@
             
             <div class="acknowledgments-grid">
                 <!-- SIB -->
-                <div class="board-member">
+                <div class="ack-box">
                     <div class="logo-placeholder">
                         <img src="img/sib-logo.png" alt="SIB Logo">
                     </div>
@@ -350,7 +341,7 @@
                 </div>
                 
                 <!-- ELIXIR Italy -->
-                <div class="board-member">
+                <div class="ack-box">
                     <div class="logo-placeholder">
                         <img src="img/elixir-it.png" alt="ELIXIR Italy Logo">
                     </div>
@@ -358,7 +349,7 @@
                 </div>
                 
                 <!-- Fondazione Alessandro Volta -->
-                <div class="board-member">
+                <div class="ack-box">
                     <div class="logo-placeholder">
                         <img src="img/fondazione-volta.png" alt="Fondazione Alessandro Volta Logo">
                     </div>
@@ -366,7 +357,7 @@
                 </div>
                 
                 <!-- Accademia delle Scienze -->
-                <div class="board-member">
+                <div class="ack-box">
                     <div class="logo-placeholder">
                         <img src="img/accademia-scienze-bologna.png" alt="Accademia delle Scienze Logo">
                     </div>
